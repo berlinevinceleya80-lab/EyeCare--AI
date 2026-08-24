@@ -35,7 +35,7 @@ st.set_page_config(
 # ============================================================
 # CONFIGURATION
 # ============================================================
-    MODEL_PATH = "eyecare_dr_model_v1.keras"
+MODEL_PATH = "eyecare_dr_model_v1.keras"
 
 CLASS_NAMES = [
     "No DR",
