@@ -35,7 +35,7 @@ st.set_page_config(
 # ============================================================
 # CONFIGURATION
 # ============================================================
-MODEL_PATH = "eyecare_dr_model.h5"
+MODEL_PATH = "eyecare_dr_model_v1.keras"
 
 CLASS_NAMES = [
     "No DR",
@@ -162,25 +162,26 @@ if "screened" not in st.session_state:
 
 @st.cache_resource
 def load_model():
-
     if not os.path.exists(MODEL_PATH):
-        return None
+        raise FileNotFoundError(
+            f"Model file not found: {os.path.abspath(MODEL_PATH)}"
+        )
 
     return tf.keras.models.load_model(
-        MODEL_PATH
+        MODEL_PATH,
+        compile=False
     )
 
 
 try:
-
     model = load_model()
-    model_status = model is not None
+    model_status = True
+    model_error = ""
 
-except Exception:
-
+except Exception as e:
     model = None
     model_status = False
-
+    model_error = str(e)
 
 # ============================================================
 # PDF GENERATOR
