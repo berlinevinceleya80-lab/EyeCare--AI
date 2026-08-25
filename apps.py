@@ -1030,12 +1030,14 @@ if st.button(
                 axis=0
             )
 
-            image_array = (
-                tf.keras.applications
-                .mobilenet_v2
-                .preprocess_input(
-                    image_array
-                )
+            image_array = np.array(image).astype("float32")
+
+            image_array = image_array / 255.0
+
+            image_array = np.expand_dims(
+            image_array,
+            axis=0
+            )
             )
 
             predictions = model.predict(
