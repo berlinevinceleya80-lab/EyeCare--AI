@@ -1038,7 +1038,7 @@ if st.button(
             image_array,
             axis=0
             )
-            )
+            
 
             predictions = model.predict(
                 image_array,
